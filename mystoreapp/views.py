@@ -34,15 +34,12 @@ def SignupFnc(request):
 
 def signinfnc(request):
     if request.method=='POST':
-        email= request.POST.get('email')
+        username= request.POST.get('username')
         password= request.POST.get('password')
         
-        if CustomUser.objects.filter(email=email).exists():
-            print(email, password)
-            checkuser = authenticate(email=email, password=password)
-            print(checkuser)
+        if CustomUser.objects.filter(username=username).exists():
+            checkuser = authenticate(request, username=username, password=password)
             if checkuser is not None:
-                print('yes login')
                 login(request, checkuser)
                 messages.success(request, 'User is logined successfully!')
             else:
