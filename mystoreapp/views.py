@@ -57,7 +57,7 @@ def index(request):
     if request.method=='POST':
         prompt = request.POST.get('prompt')
         print(prompt)
-        client = genai.Client(api_key='AIzaSyDdOASehooKa-5TvFmz4IlNvSg_FYZdAds')
+        client = genai.Client(api_key='AIzaSy************Sg_FYZdAds')
 
         response = client.models.generate_content(
             model="gemini-3-flash-preview", contents=f"Hello act as a receptionist of full stack web development course in which we will teach the web development including html, css, js and django with all related technologies. the fee will be 3500/month  reply in short simple words without any extra styling if anyone is asking irrelated question just ask him to ask related question here is the question: {prompt}"

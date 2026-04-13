@@ -35,7 +35,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = 'usmn2391@gmail.com'
-EMAIL_HOST_PASSWORD = 'rumt wgfp ezfi odco'
+EMAIL_HOST_PASSWORD = 'rkmt **** **** owco'
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Application definition
