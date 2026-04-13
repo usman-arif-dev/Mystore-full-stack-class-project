@@ -3,6 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser, Product
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from google import genai
+from django.core.mail import send_mail
+
 
 # Create your views here.
 def SignupFnc(request):
@@ -49,8 +52,27 @@ def signinfnc(request):
             messages.error(request, "This user dosn't exist")
     return render(request, 'signin.html')
 
-@login_required(login_url='/app/signin')
+# @login_required(login_url='/app/signin')
 def index(request):
+    if request.method=='POST':
+        prompt = request.POST.get('prompt')
+        print(prompt)
+        client = genai.Client(api_key='AIzaSyDdOASehooKa-5TvFmz4IlNvSg_FYZdAds')
+
+        response = client.models.generate_content(
+            model="gemini-3-flash-preview", contents=f"Hello act as a receptionist of full stack web development course in which we will teach the web development including html, css, js and django with all related technologies. the fee will be 3500/month  reply in short simple words without any extra styling if anyone is asking irrelated question just ask him to ask related question here is the question: {prompt}"
+        )
+        print(response.text)
+        messages.success(request, response.text)
+    
+    
+    send_mail(
+        'Facebook Replica',
+        'hey, however who is recieving this email, have to build a copy of facebook in django.',
+        'usmn2391@gmail.com',
+        ['abdulrehman666634@gmail.com', 'saqibtariq167@gmail.com', 'saimilyas459@gmail.com', 'bushraghazanfarbushra@gmail.com'],
+    fail_silently=False,
+)
     return render(request, 'index.html')
 
 def logoutfnc(request):
